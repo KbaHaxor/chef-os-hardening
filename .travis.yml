@@ -11,30 +11,36 @@ before_install:
   - gem update --system # see https://github.com/bundler/bundler/issues/5357
 
 env:
- - INSTANCE=ubuntu-12-04
- - INSTANCE=ubuntu-14-04
- - INSTANCE=ubuntu-16-04
- - INSTANCE=centos-6
- - INSTANCE=centos-7
- - INSTANCE=debian-7
- - INSTANCE=debian-8
- - INSTANCE=fedora-24
- - INSTANCE=fedora-25
+ - INSTANCE=ubuntu-12-04 CHEF_VERSION=12.5.1
+ - INSTANCE=ubuntu-14-04 CHEF_VERSION=12.5.1
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=12.5.1
+ - INSTANCE=centos-6 CHEF_VERSION=12.5.1
+ - INSTANCE=centos-7 CHEF_VERSION=12.5.1
+ - INSTANCE=debian-7 CHEF_VERSION=12.5.1
+ - INSTANCE=debian-8 CHEF_VERSION=12.5.1
+ - INSTANCE=fedora-24 CHEF_VERSION=12.5.1
+ - INSTANCE=fedora-25 CHEF_VERSION=12.5.1
+ - INSTANCE=ubuntu-16-04 CHEF_VERSION=13.0.113
+ - INSTANCE=centos-7 CHEF_VERSION=13.0.113
+ - INSTANCE=debian-8 CHEF_VERSION=13.0.113
 
 script:
   -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.do.local.yml
 
 matrix:
   allow_failures: # allow failues of integration tests as the forks might miss the DO token
-  - env: INSTANCE=ubuntu-12-04
-  - env: INSTANCE=ubuntu-14-04
-  - env: INSTANCE=ubuntu-16-04
-  - env: INSTANCE=centos-6
-  - env: INSTANCE=centos-7
-  - env: INSTANCE=debian-7
-  - env: INSTANCE=debian-8
-  - env: INSTANCE=fedora-24
-  - env: INSTANCE=fedora-25
+  - env: INSTANCE=ubuntu-12-04 CHEF_VERSION=12.5.1
+  - env: INSTANCE=ubuntu-14-04 CHEF_VERSION=12.5.1
+  - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=12.5.1
+  - env: INSTANCE=centos-6 CHEF_VERSION=12.5.1
+  - env: INSTANCE=centos-7 CHEF_VERSION=12.5.1
+  - env: INSTANCE=debian-7 CHEF_VERSION=12.5.1
+  - env: INSTANCE=debian-8 CHEF_VERSION=12.5.1
+  - env: INSTANCE=fedora-24 CHEF_VERSION=12.5.1
+  - env: INSTANCE=fedora-25 CHEF_VERSION=12.5.1
+  - env: INSTANCE=ubuntu-16-04 CHEF_VERSION=13.0.113
+  - env: INSTANCE=centos-7 CHEF_VERSION=13.0.113
+  - env: INSTANCE=debian-8 CHEF_VERSION=13.0.113
   include:
     - env: UNIT_AND_LINT=1
       script:
